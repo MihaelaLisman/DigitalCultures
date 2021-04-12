@@ -7,20 +7,122 @@
 		<link rel="stylesheet" href="style.css">
 		<title>Digital Cultures</title>
 
+		<script src="jquery-3.6.0.min.js"></script>
+
 		<script>
+
+		/* COOKIES */
+
+		$(document).ready(function() {
+
+			function setCookie() {
+
+					var name = prompt ("Hello, What is your name?");
+					document.cookie="name=" + name;
+
+			}
+
+			function getCookie() {
+
+				var name = document.cookie
+						.split("; ")
+						.find(row => row.startsWith("name="))
+						.split("=") [1];
+
+				$("header").append(function()  {
+					return "<p style='color: dimGray'> Welcome, back" + name + "</p>";
+				})
+			}
+
+			function checkCookie() {
+				if (document.cookie) {
+						getCookie();
+				} else {
+						setCookie();
+				}
+			}
+
+			checkCookie();
+			
+		});
+
+		</script>
+		<script>
+
+		/* FADE IN */
+
+			$(document).ready(function() {
+				$("header").hide().fadeIn(1250);
+			/* Update number of posts */ 		
+					var postsNum = 3;
+					var i = 0;
+					while(i <= postsNum) {
+						$("h2").hide().delay(500).each(function() {
+							$(this).delay(500 * i).fadeIn(1250);
+							i++;
+						});
+					}
+					$("footer").hide().delay(500 * i).fadeIn(1250);
+			});
+
+		/* HOVER ANIMATION */
+
+			$(document).ready(function() {
+
+				$("h2").mouseover(function() {
+
+					$(this).css({
+							"margin-left": "20px",
+							"transition": ".5s"
+					})
+					.siblings().css({
+							'opacity': ".2",
+							'transition': ".5s"
+					});
+
+				});
+
+				$("h2").mouseout(function() {
+					$(this).css({
+							"margin-left": "0px",
+							"transition": ".5s"
+						})
+					.siblings().css({
+							'opacity': "1",
+							'transition': ".5s"
+					});
+				});
+
+
+			});
+
+		</script>
+		<script>
+
+		function nameCheck() {
 
 			var name = prompt("What is your name?");
 
 			if (name == "Picu" || name == "Andrei") {
-				alert("Get back to work!")
+				var day = prompt("...and what day is it?");
+				if (day != "Sunday" && day != "Saturday") {
+					alert("Get back to work!");
+				}
+				else {
+					alert("Welcome, " + name + ".");
+				}
 			}
-			else if (name == "") {
-				alert("Tell me your name!")
+			else if (name == "" || name ==  null) {
+				alert("Tell me your name!");
+				nameCheck ();
 			}
 			else {
 				alert("Hello, " + name + "!");
 			}
+		}
 			
+		nameCheck();
+
 		</script>
 
 	</head>
@@ -41,7 +143,7 @@
 
 	<!-- BLOG POST 2 -->
 
-		<h2><a href="2_Virality/Virality.html"> Virality & Trending</a></h2>
+		<h2><a href="2_Virality/Virality.html"> The virality process in meme</a></h2>
 
 	<!-- BLOG POST 3 -->
 
